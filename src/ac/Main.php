@@ -11,7 +11,7 @@
     use pocketmine\entity\Effect;
     use pocketmine\utils\TextFormat;
     use pocketmine\network\protocol\UpdateAttributesPacket;
-    use \pocketmine\utils\TextFormat;
+    use pocketmine\utils\TextFormat;
 
 
     class Main extends PluginBase implements Listener {
