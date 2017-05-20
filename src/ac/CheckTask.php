@@ -3,6 +3,7 @@ namespace ac;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\entity\Effect;
 Class CheckTask extends PluginTask {
 	private $instance;
