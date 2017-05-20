@@ -28,7 +28,7 @@ Class CheckTask extends PluginTask {
 				if((float) $this->instance->point[$key]["fly"] > (float) 3){
 					if($player instanceof Player){
 						$this->instance->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-						$this->instance->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+						$this->instance->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
 					}
 				}
 			} else {
