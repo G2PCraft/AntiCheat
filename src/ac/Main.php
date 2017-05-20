@@ -97,12 +97,12 @@ use pocketmine\block\Block;
             $player = $event->getPlayer();
             if($packet instanceof UpdateAttributesPacket){ 
                 $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                $this->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+                $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
             }
             if($packet instanceof SetPlayerGameTypePacket){ 
                 $player->kick(TextFormat::RED."#HACK SetPlayerGameTypePacket");
                 $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                $this->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+                $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
             }
             if($packet instanceof AdventureSettingsPacket){
                 if(!$player->isCreative() and !$player->isSpectator() and !$player->isOp() and !$player->getAllowFlight()){
@@ -114,23 +114,23 @@ use pocketmine\block\Block;
                         case 38:
                         case 39:
                             $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                            $this->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+                            $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
                             break;
                         default:
                             break;
                     }
                     if((($packet->flags >> 9) & 0x01 === 1) or (($packet->flags >> 7) & 0x01 === 1) or (($packet->flags >> 6) & 0x01 === 1)){
                         $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                        $this->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+                        $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
                     }
                 }
                 if (($packet->allowFlight || $packet->isFlying) && $player->getAllowFlight() && $player->isSpectator() && $player->isOp() !== true) {
-                        $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                    $this->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+                    $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
+                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
                 }
                 if ($packet->noClip && $player->isSpectator() !== true) {
                     $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                    $this->getServer()->getNameBans()->addBan($player->getName(), "No hacking!");
+                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"ban-ip " . $player->getName() . " Hack");
                 }
             $player->sendSettings();
             $event->setCancelled();
