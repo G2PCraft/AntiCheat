@@ -12,6 +12,7 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerKickEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\UUID;
