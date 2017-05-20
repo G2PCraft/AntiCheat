@@ -9,6 +9,5 @@
 
 กันอะไรได้บ้าง
 - Fly 
-- HighJump
-- TapTelePort
+- Hack GM //เวลา Hax จะโดนเตะเหมือน Hack Fly
 - UpdateAttributes HACK 
