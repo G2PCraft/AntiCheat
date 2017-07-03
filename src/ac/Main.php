@@ -93,7 +93,6 @@ use pocketmine\block\Block;
 
 
         public function onRecieve(DataPacketReceiveEvent $event) {
-            $player = $event->getPlayer();
             $packet = $event->getPacket();
             $player = $event->getPlayer();
             if($packet instanceof UpdateAttributesPacket){ 
@@ -101,7 +100,6 @@ use pocketmine\block\Block;
                 $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"kick " . $player->getName() . " Hack");
             }
             if($packet instanceof SetPlayerGameTypePacket){ 
-                $player->kick(TextFormat::RED."#HACK SetPlayerGameTypePacket");
                 $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
                 $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"kick " . $player->getName() . " Hack");
             }
@@ -125,9 +123,11 @@ use pocketmine\block\Block;
                         $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"kick " . $player->getName() . " Hack");
                     }
                 }
-                if (($packet->allowFlight || $packet->isFlying) && $player->getAllowFlight() && $player->isSpectator() && $player->isOp() !== true) {
-                    $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
-                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"kick " . $player->getName() . " Hack");
+                if (($packet->allowFlight || $packet->isFlying) && $player->getAllowFlight() && $player->isSpectator() !== true) {
+		    if (!$player->isOp()) {
+                        $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
+                        $this->getServer()->dispatchCommand(new ConsoleCommandSender(),"kick " . $player->getName() . " Hack");
+		    }
                 }
                 if ($packet->noClip && $player->isSpectator() !== true) {
                     $this->getServer()->broadcastMessage(TextFormat::GOLD . $player->getName() . " was ban becuase using Hack!");
